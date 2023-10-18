@@ -9,7 +9,6 @@ function createMarkup(arr) {
         <img
           class="gallery__image"
           src="${preview}"
-          data-source="${original}"
           alt="${description}"
         />
       </a>
@@ -20,11 +19,11 @@ function createMarkup(arr) {
 gallery.insertAdjacentHTML("afterbegin", createMarkup(galleryItems));
 gallery.addEventListener("click", handlerClick);
 
-
+const lightbox = new SimpleLightbox('.gallery .gallery__item .gallery__link', {captionsData: "alt", captionDelay: "300"});
 function handlerClick(evt) {
   if (evt.target === evt.currentTarget) {
     return;
   } 
   evt.preventDefault();
-  const lightbox = new SimpleLightbox('.gallery .gallery__item .gallery__link', {captionsData: "alt"});
+  lightbox.open(evt.currentTarget);
 }
