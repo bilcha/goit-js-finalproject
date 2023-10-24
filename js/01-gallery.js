@@ -38,15 +38,15 @@ function handlerClick(evt) {
           alt="${imgData.alt}"
         />
     </div>
-`)
+`, { onClose: () => { window.removeEventListener("keydown", handlerKeyClick)}})
   
-instance.show()
+  instance.show();
+  window.addEventListener("keydown", handlerKeyClick);
 }
 function handlerKeyClick(evt) {
   if (evt.key === "Escape" && instance.visible()) {
     instance.close();
   }
 }
-window.addEventListener("keydown", handlerKeyClick);
 
 
